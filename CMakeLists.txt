@@ -108,7 +108,7 @@ foreach(file ${files})
 endforeach()
 
 # Move OpenCV classifiers
-file(GLOB files "lib/3rdParty/OpenCV3.4/classifiers/*.xml")
+file(GLOB files "lib/3rdParty/OpenCV/classifiers/*.xml")
 foreach(file ${files})
 	file(COPY ${file} DESTINATION ${CMAKE_BINARY_DIR}/bin/classifiers)
 	install(FILES ${file} DESTINATION ${CMAKE_CONFIG_DIR}/classifiers)
@@ -145,7 +145,7 @@ if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
 endif ()
 
 # dlib
-find_package(dlib 19.13)
+find_package(dlib 19.17)
 if(${dlib_FOUND})
     message("dlib information:")
     message("  dlib version: ${dlib_VERSION}")
@@ -241,7 +241,4 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL "${CMAKE_SOURCE_DIR}")
 endif()
 
 # executables
-add_subdirectory(exe/FaceLandmarkImg)
-add_subdirectory(exe/FaceLandmarkVid)
-add_subdirectory(exe/FaceLandmarkVidMulti)
-add_subdirectory(exe/FeatureExtraction)
+add_subdirectory(src)
