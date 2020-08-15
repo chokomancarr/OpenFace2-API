@@ -23,29 +23,29 @@ int main(int argc, char **argv) {
 
     // The modules that are being used for tracking
     // lib\local\LandmarkDetector\src\LandmarkDetectorModel.cpp
-	LandmarkDetector::CLNF face_model(parameters.model_location);
-	if (!face_model.loaded_successfully)
-	{
-		std::cerr << "ERROR: Could not load the landmark detector. " << std::endl;
-		return 1;
-	}
+    LandmarkDetector::CLNF face_model(parameters.model_location);
+    if (!face_model.loaded_successfully)
+    {
+        std::cerr << "ERROR: Could not load the landmark detector. " << std::endl;
+        return 1;
+    }
 
-	if (!face_model.eye_model)
-	{
-		std::cerr << "WARNING: No eye model found. " << std::endl;
-	}
+    if (!face_model.eye_model)
+    {
+        std::cerr << "WARNING: No eye model found. " << std::endl;
+    }
 
     cv::VideoCapture cap(0);
     if (!cap.isOpened()) {
-		std::cerr << "ERROR: Cannot open a Webcam device. " << std::endl;
-		return 1;
+        std::cerr << "ERROR: Cannot open a Webcam device. " << std::endl;
+        return 1;
     }
 
     // lib\local\Utilities\src\Visualizer.cpp
-	Utilities::Visualizer visualizer(true, false, false, false);
+    Utilities::Visualizer visualizer(true, false, false, false);
 
-	int cam_width = 640;
-	int cam_height = 480;
+    int cam_width = 640;
+    int cam_height = 480;
     float cx = cam_width / 2.0f;
     float cy = cam_height / 2.0f;
     float fx = 500.0f * (cam_width / 640.0f);
@@ -55,10 +55,10 @@ int main(int argc, char **argv) {
     cv::Mat frame_bgr, frame_gray;
     // while ((key = cv::waitKey(10)) != 27) {
     while (true) {
-		if(!(cap.grab() && cap.retrieve(frame_bgr))){
+        if(!(cap.grab() && cap.retrieve(frame_bgr))){
             std::cerr << "ERROR: Failed to glab a frame. " << std::endl;
-			break;
-		}
+            break;
+        }
         // cv::imshow("Preview", frame_bgr);
         cv::cvtColor(frame_bgr, frame_gray, cv::COLOR_BGR2GRAY);
         bool detection_success = LandmarkDetector::DetectLandmarksInVideo(frame_bgr, face_model, parameters, frame_gray);
@@ -73,7 +73,7 @@ int main(int argc, char **argv) {
             GazeAnalysis::EstimateGaze(face_model, gaze_direction_R, fx, fy, cx, cy, false);
         }
 
-		cv::Vec6d pose_estimate = LandmarkDetector::GetPose(face_model, fx, fy, cx, cy);
+        cv::Vec6d pose_estimate = LandmarkDetector::GetPose(face_model, fx, fy, cx, cy);
         std::cout << "L: (" 
                 << gaze_direction_L.x << ", "
                 << gaze_direction_L.y << ", "
