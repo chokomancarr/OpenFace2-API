@@ -1,4 +1,4 @@
-cd lib/local/LandmarkDetector/model/patch_experts
+cd openface2/LandmarkDetector/model/patch_experts
 
 wget https://www.dropbox.com/s/7na5qsjzz8yfoer/cen_patches_0.25_of.dat
 if [ $? -ne 0 ]
@@ -24,4 +24,4 @@ then
   wget https://onedrive.live.com/download?cid=2E2ADA578BFF6E6E&resid=2E2ADA578BFF6E6E%2153070&authkey=AD6KjtYipphwBPc
 fi
 
-cd ../../../../../
+cd ../../../../
