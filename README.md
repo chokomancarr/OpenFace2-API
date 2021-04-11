@@ -1,11 +1,8 @@
 # OpenFace 2.2.0: a facial behavior analysis toolkit
 
-```
-cmake -G "Visual Studio 16 2019" "-DCMAKE_TOOLCHAIN_FILE=..." -D CMAKE_BUILD_TYPE=RELEASE -A x64 ..
-cmake --build . --config Release
-cd bin
-.\Release\GetLandmarks.exe
-```
+note from fork:
+  This repository is made as a submodule for kcstuber.
+  Everything other than local code is removed.
 
 [![Build Status](https://travis-ci.org/TadasBaltrusaitis/OpenFace.svg?branch=master)](https://travis-ci.org/TadasBaltrusaitis/OpenFace)
 [![Build status](https://ci.appveyor.com/api/projects/status/8msiklxfbhlnsmxp/branch/master?svg=true)](https://ci.appveyor.com/project/TadasBaltrusaitis/openface/branch/master)

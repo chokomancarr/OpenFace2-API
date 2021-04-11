@@ -154,7 +154,8 @@ if(${dlib_FOUND})
         add_library(dlib INTERFACE IMPORTED GLOBAL)
     endif()
 else()
-    message(FATAL_ERROR "dlib not found in the system, please install dlib")
+#    message(FATAL_ERROR "dlib not found in the system, please install dlib")
+    add_library(dlib INTERFACE IMPORTED GLOBAL)
 endif()
 
 # suppress auto_ptr deprecation warnings

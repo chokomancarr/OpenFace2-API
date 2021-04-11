@@ -105,3 +105,5 @@ lib/local/CppInerop/Debug/
 
 # IDE-generated folders
 .idea
+
+.DS_Store
