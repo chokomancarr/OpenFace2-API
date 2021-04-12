@@ -49,12 +49,15 @@ using namespace LandmarkDetector;
 // A default constructor
 CLNF::CLNF()
 {
+	//EDIT: dont do anything
+	/*
 	FaceModelParameters parameters;
 
 	// A successful read wil set this to true
 	loaded_successfully = false;
 
 	this->Read(parameters.model_location);
+	*/
 }
 
 // Constructor from a model file
