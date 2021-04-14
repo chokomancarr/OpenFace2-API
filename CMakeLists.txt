@@ -21,63 +21,22 @@ if (NOT ${EXE_PATH})
 endif()
 
 # Move LandmarkDetector model
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/model/)
-file(GLOB files "openface2/LandmarkDetector/model/*.txt")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/)
-
-# Move the hierarchical LandmarkDetector models
-file(GLOB files "openface2/LandmarkDetector/model/model*")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/)
-
-# Move detection validation models
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/model/detection_validation/)
-file(GLOB files "openface2/LandmarkDetector/model/detection_validation/*.txt")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/detection_validation/)
-
-# Move patch experts
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/model/patch_experts/)
-file(GLOB files "openface2/LandmarkDetector/model/patch_experts/*.txt")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/patch_experts/)
-
-# Move CEN patch experts
-file(GLOB files "openface2/LandmarkDetector/model/patch_experts/*.dat")
-if ("${files}" STREQUAL "")
-	message(FATAL_ERROR "missing files in LandmarkDetector/model/patch_experts/! you may need to run the download_models script!")
-else()
-	add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/patch_experts/)
-endif()
-
-# Move MTCNN face detector
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/model/mtcnn_detector/)
-file(GLOB files "openface2/LandmarkDetector/model/mtcnn_detector/*.txt")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/mtcnn_detector/)
-
-# Move MTCNN face detector
-file(GLOB files "openface2/LandmarkDetector/model/mtcnn_detector/*.dat")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/mtcnn_detector/)
-
-# Move Point Distribution models
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/model/pdms/)
-file(GLOB files "openface2/LandmarkDetector/model/pdms/*.txt")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/model/pdms/)
+add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
+	"${CMAKE_CURRENT_SOURCE_DIR}/openface2/LandmarkDetector/model/"
+	${EXE_PATH}/model/
+)
 
 # Move OpenCV classifiers
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/classifiers/)
-file(GLOB files "lib/3rdParty/OpenCV/classifiers/*.xml")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/classifiers/)
+add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
+	"${CMAKE_CURRENT_SOURCE_DIR}/lib/3rdParty/OpenCV/classifiers/"
+	${EXE_PATH}/classifiers/
+)
 
 # Move AU prediction modules
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E make_directory  ${EXE_PATH}/AU_predictors/)
-file(GLOB files "openface2/FaceAnalyser/AU_predictors/*.txt")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/AU_predictors/)
-
-# Move AU prediction modules
-file(GLOB files "openface2/FaceAnalyser/AU_predictors/svr*")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/AU_predictors/)
-
-# Move AU prediction modules
-file(GLOB files "openface2/FaceAnalyser/AU_predictors/svm*")
-add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${files} ${EXE_PATH}/AU_predictors/)
+add_custom_command(TARGET copy_datasets POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_directory
+	"${CMAKE_CURRENT_SOURCE_DIR}/openface2/FaceAnalyser/AU_predictors/"
+	${EXE_PATH}/AU_predictors/
+)
 
 if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
     execute_process(COMMAND ${CMAKE_CXX_COMPILER} -dumpversion OUTPUT_VARIABLE GCC_VERSION)
