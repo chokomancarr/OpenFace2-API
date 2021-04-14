@@ -1,16 +1,6 @@
 # Download the models from the cloud (stored in Dropbox and OneDrive)
 
-# Determine correct path to the model files
-if([System.IO.Directory]::Exists( (Join-Path (Get-Location) 'lib') ))
-{
-    # If the lib folder exists, code is compiled from source
-    $modelPath = "lib/local/LandmarkDetector/"
-}
-else
-{
-    # Otherwise, binaries are used
-    $modelPath = ""
-}
+$modelPath = "openface2/LandmarkDetector/"
 
 # Start with 0.25 scale models
 $destination = $modelPath + "model/patch_experts/cen_patches_0.25_of.dat"
