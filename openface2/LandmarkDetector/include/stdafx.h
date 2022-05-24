@@ -56,7 +56,7 @@ namespace fs = std::filesystem;
 
 // OpenBLAS stuff
 
-#include <openblas_config.h>
+#include <openblas/openblas_config.h>
 // Instead of including cblas.h and f77blas.h (the definitions from OpenBLAS and other BLAS libraries differ, declare the required OpenBLAS functionality here)
 #ifdef __cplusplus
 extern "C" {
